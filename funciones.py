@@ -25,7 +25,7 @@ def atacar(hp_enemy: int) -> int:
         int: nueva Hp del enemigo.
     """
 
-    daño = generar_daño(10, 25)
+    daño = sistema_critico()
     hp_enemy -= daño
 
     if hp_enemy < 0:
@@ -65,3 +65,52 @@ def habilidad_especial(hp_enemy:int) -> int:
     print(f"se realizo {daño} de daño\n"
         f"Hp del enemigo: {hp_enemy}")
     return hp_enemy
+
+
+def generic_input(mensaje: str, menor: bool, normalized: int | float | None = None) -> str | int | float: 
+    """
+    Permite crear un input generico que permite normalizar valores automaticamente.
+
+    Args:
+        mensaje (str): El mensaje que se va a mostrar en el input.
+        menor(bool): 
+        normalized (int, float or None): El tipo de normalización a aplicar al dato, si no pasa se devuelve un str por defecto.
+    Returns: 
+        result (str, int or float): El valor introducido por el usuario ya normalizado.
+    """
+
+    valid = False
+
+    while not valid:
+        try:
+            user_input = input(mensaje).strip().lower()
+            
+            if user_input is None:
+                print("ingrese un dato valido")
+
+            if menor:
+                if user_input <=0:
+                    print("ingrese un numero positivo")
+            
+            
+            if normalized is None:
+                return user_input
+            
+            if normalized in [int, float]:
+                return normalized(user_input)
+            
+            return normalized(user_input)
+
+        except ValueError: 
+            print("entrada no valida, ingresa un valor correcto")
+
+def sistema_critico()-> int:
+    critico = random.random() < 0.10
+    daño = generar_daño(10,25)
+
+    if critico:
+        print("felicidades! tus ataques hacen el doble de daño")
+    
+        return daño * 2
+
+    return daño
