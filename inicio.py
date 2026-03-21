@@ -7,6 +7,7 @@ print("⭐ ⭐ ⭐ INITIAL STATS ⭐ ⭐ ⭐\n"
       "⚜️  Hero HP: 100\n"
       "⚜️  Healing Potions: 3\n"
       "⚜️  Enemy HP: 120")
+time.sleep(1)
 
 hp_heroe = 100
 potion = 3
@@ -36,6 +37,7 @@ while hp_heroe > 0 and hp_enemy > 0:
 
     if select == 1:
         print("🦸‍♀️ Your turn:")
+        time.sleep(1)
         hp_enemy = player_turn(hp_enemy)
         
     elif select == 2:
@@ -49,18 +51,21 @@ while hp_heroe > 0 and hp_enemy > 0:
     elif select == 3:
         hp_enemy = special_ability(hp_enemy)
 
-
+    
     if hp_enemy > 0:   
         print("=" * 40)
         print("👹 Enemy's turn...")
         hp_heroe, hp_enemy = enemy_turn(hp_heroe, hp_enemy)
+        time.sleep(3)
     
         
 
 if hp_heroe <= 0:
-    print("💀 You have been defeated...")
+    time.sleep(1)
+    print("\n💀 You have been defeated...")
 else:
-    print("🏆 Victory! You defeated the enemy!")
+    time.sleep(1)
+    print("\n🏆 Victory! You defeated the enemy!")
 
     
 

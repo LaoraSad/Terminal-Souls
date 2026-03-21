@@ -1,5 +1,6 @@
 import random
 
+
 def bar(value, maximum):
     """
     Generates a visual progress bar for HP.
