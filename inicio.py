@@ -1,11 +1,12 @@
 from funciones import  turno_jugador, turno_enemigo, curar, habilidad_especial, generic_input, interfaz
+import time
 
-print(" 🕹️ 🕹️ 🕹️ 🕹️ Welcome to Terminal Souls 🕹️ 🕹️ 🕹️ 🕹️\n")
+print("\n🕹️🕹️🕹️🕹️  WELCOME TO TERMINAL SOULS  🕹️🕹️🕹️🕹️\n")
 
-print(" ⭐ ⭐ ⭐ Initial Attributes ⭐ ⭐ ⭐ \n"
-    "⚜️  Hp Hero: 100\n" 
-    "🫙  healing potions: 3\n"
-    "⚜️  Hp Enemy: 120\n")
+print("⭐ ⭐ ⭐ INITIAL STATS ⭐ ⭐ ⭐\n"
+      "⚜️  Hero HP: 100\n"
+      "⚜️  Healing Potions: 3\n"
+      "⚜️  Enemy HP: 120")
 
 hp_heroe = 100
 potion = 3
@@ -15,25 +16,33 @@ while hp_heroe > 0 and hp_enemy > 0:
 
     interfaz(hp_heroe, hp_enemy, potion)
 
-    print("-----Menu-----\n"
-          "1. ⚔️  Atacar\n"
-          "2. 🛠️  Curar\n"
-          "3. ✨ Habilidad especial\n")
+    print("\n" + "-" * 40)
+
+    print("\n----- MENU -----\n"
+      "1. ⚔️  Attack\n"
+      "2. 🧪  Heal\n"
+      "3. ✨ Special Ability\n")
     
-    elegir = generic_input("elija la opcion que deseas: ", False,int) 
+    print("\n" + "-" * 40)
+    
+    elegir = generic_input("\n🎮 What will you do? (1-3): ", False, int)
     if elegir in [1,2,3]:
             opcion_valida = True
     else:
-        print("solo puedes escoger 1, 2 o 3, intenta nuevamente\n")
+        print("❌ Invalid choice! Please select 1, 2, or 3.\n")
         continue
-        
+
+    print("\n" + "-" * 40)   
+
     if elegir == 1:
-        print("El turno del jugador:")
+        print("🦸‍♀️ Your turn:")
         hp_enemy = turno_jugador(hp_enemy)
         
     elif elegir == 2:
         if potion == 0:
-            print("cuidado! no tienes pociones disponibles, elige nuevamente")
+            print("🧪 You reach for a potion...")
+            time.sleep(2)
+            print("❌ But your inventory is empty!")
             continue  
         hp_heroe, potion = curar(hp_heroe, potion)
          
@@ -41,14 +50,13 @@ while hp_heroe > 0 and hp_enemy > 0:
         hp_enemy = habilidad_especial(hp_enemy)
         
     print("=" * 40)
-    print("Turno del enemigo")
+    print("👹 Enemy's turn...")
     hp_heroe, hp_enemy = turno_enemigo(hp_heroe, hp_enemy)
 
-
-if hp_heroe <= 0: 
-    print("💀 Has perdido")
+if hp_heroe <= 0:
+    print("💀 You have been defeated...")
 else:
-    print("🏆 Has ganado")
+    print("🏆 Victory! You defeated the enemy!")
 
     
 
