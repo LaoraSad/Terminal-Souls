@@ -93,6 +93,15 @@ terminal-souls/
 
 ---
 
+## 🗺️ Project Diagram
+
+The project flowchart is:
+<p align="center">
+   <img src="./images/diagrama.png" alt="Preview" width="600"/>
+</p>
+
+---
+
 ## 👩‍💻 Author
 
 Created by Luisa De la Rosa, Jhonatan Rodriguez
