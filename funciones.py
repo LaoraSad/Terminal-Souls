@@ -1,4 +1,29 @@
 import random
+
+def bar(value, maximum):
+
+    if value < 0:
+        value = 0
+
+    size = 10
+    filled = int((value / maximum) * size)
+    empty = size - filled
+
+    return "█" * filled + "░" * empty
+
+def interfaz(hp_heroe:int, hp_enemy:int, potion:int, hp_max_heroe:int=100, hp_max_enemy:int=120) -> None:
+    emoji =  "🧃" if potion > 0 else "🥛"
+    print("\n" + "=" * 40)  
+
+    print("🦸‍♀️ HEROE")
+    print(f"POTIONS {emoji}: {potion}")
+    print(f"HP: [{bar(hp_heroe, hp_max_heroe)}] {hp_heroe} / {hp_max_heroe}")
+
+    print()
+    
+    print("🧟‍♀️ ENEMY")
+    print(f"HP: [{bar(hp_enemy, hp_max_enemy)}] {hp_enemy} / {hp_max_enemy}")
+
 def generar_daño(min_daño: int, max_daño: int) -> int:
 
     """
@@ -13,8 +38,7 @@ def generar_daño(min_daño: int, max_daño: int) -> int:
     """
     return random.randint(min_daño, max_daño)
 
-     
-def atacar(hp_enemy: int) -> int:
+def turno_jugador(hp_enemy: int) -> int:
     """
     Genera el ataque al enemigo dentro del valor de daño aleatorio dentro de un rango.
 
@@ -31,14 +55,32 @@ def atacar(hp_enemy: int) -> int:
     if hp_enemy < 0:
         hp_enemy = 0
 
-    print(f"hiciste {daño} de daño")
-    print(f"hp enemigo: {hp_enemy}")
+    print(f"El heroe realizó {daño} de daño")
+    print(f"Hp enemigo: {hp_enemy}")
 
     return hp_enemy 
 
-def curar(hp_heroe: int, potion:int)-> tuple:
+def turno_enemigo(hp_heroe:int, hp_enemy:int) -> tuple[int,int]:
+    daño = generar_daño(15,20)
+    if hp_enemy <= 24:
+        curarse_enemy = random.randint(1,10)
+        if curarse_enemy <= 5:
+            hp_enemy += random.randint(20,25)
+            print(f"el enemigo decidió curarse: {hp_enemy}")
+
+            return hp_heroe, hp_enemy
+        
+    hp_heroe -= daño 
+
+    if hp_heroe < 0:
+        hp_heroe = 0
+
+    print(f"El heroe recibió {daño} de daño")
+    return hp_heroe, hp_enemy
+
+def curar(hp_heroe: int, potion:int)-> tuple[int,int]:
     if potion == 0:
-        print("no tienes pociones disponibles, elige nuevamente")
+        print("El heroe no tienes pociones disponibles, elige nuevamente")
         return hp_heroe, potion
     
     hp_heroe += 20 
@@ -65,7 +107,6 @@ def habilidad_especial(hp_enemy:int) -> int:
     print(f"se realizo {daño} de daño\n"
         f"Hp del enemigo: {hp_enemy}")
     return hp_enemy
-
 
 def generic_input(mensaje: str, menor: bool, normalized: int | float | None = None) -> str | int | float: 
     """
@@ -114,3 +155,4 @@ def sistema_critico()-> int:
         return daño * 2
 
     return daño
+
