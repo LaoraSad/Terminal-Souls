@@ -1,4 +1,4 @@
-from funciones import  turno_jugador, turno_enemigo, curar, habilidad_especial, generic_input, interfaz
+from funciones import  player_turn, enemy_turn, cure, special_ability, generic_input, interface
 import time
 
 print("\n🕹️🕹️🕹️🕹️  WELCOME TO TERMINAL SOULS  🕹️🕹️🕹️🕹️\n")
@@ -14,7 +14,7 @@ hp_enemy = 120
 
 while hp_heroe > 0 and hp_enemy > 0:
 
-    interfaz(hp_heroe, hp_enemy, potion)
+    interface(hp_heroe, hp_enemy, potion)
 
     print("\n" + "-" * 40)
 
@@ -25,33 +25,37 @@ while hp_heroe > 0 and hp_enemy > 0:
     
     print("\n" + "-" * 40)
     
-    elegir = generic_input("\n🎮 What will you do? (1-3): ", False, int)
-    if elegir in [1,2,3]:
-            opcion_valida = True
+    select = generic_input("\n🎮 What will you do? (1-3): ", False, int)
+    if select in [1,2,3]:
+            valid_option = True
     else:
         print("❌ Invalid choice! Please select 1, 2, or 3.\n")
         continue
 
     print("\n" + "-" * 40)   
 
-    if elegir == 1:
+    if select == 1:
         print("🦸‍♀️ Your turn:")
-        hp_enemy = turno_jugador(hp_enemy)
+        hp_enemy = player_turn(hp_enemy)
         
-    elif elegir == 2:
+    elif select == 2:
         if potion == 0:
             print("🧪 You reach for a potion...")
             time.sleep(2)
             print("❌ But your inventory is empty!")
             continue  
-        hp_heroe, potion = curar(hp_heroe, potion)
+        hp_heroe, potion = cure(hp_heroe, potion)
          
-    elif elegir == 3:
-        hp_enemy = habilidad_especial(hp_enemy)
+    elif select == 3:
+        hp_enemy = special_ability(hp_enemy)
+
+
+    if hp_enemy > 0:   
+        print("=" * 40)
+        print("👹 Enemy's turn...")
+        hp_heroe, hp_enemy = enemy_turn(hp_heroe, hp_enemy)
+    
         
-    print("=" * 40)
-    print("👹 Enemy's turn...")
-    hp_heroe, hp_enemy = turno_enemigo(hp_heroe, hp_enemy)
 
 if hp_heroe <= 0:
     print("💀 You have been defeated...")
