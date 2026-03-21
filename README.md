@@ -1,90 +1,110 @@
-# Terminal Souls 🕹️
+# 🕹️ Terminal Souls
 
-## 📌 Description
-
-Terminal Souls is a turn-based combat game developed in Python.
-The player controls a hero who fights against an enemy using different actions such as attacking, healing, and using a special ability.
+A simple turn-based RPG game built in Python, played entirely in the terminal.
 
 ---
 
-## ⚙️ Features
+## 🎮 Description
+
+**Terminal Souls** is a mini RPG where the player fights against an enemy using different actions such as attacking, healing, and using a special ability.
+
+The game continues in a loop until either the hero or the enemy is defeated.
+
+---
+
+## ⚔️ Features
 
 * Turn-based combat system
-* Random damage generation using the `random` module
-* Healing system with limited potions
-* Special ability with a probability of failure
-* Automatic enemy attacks after each valid turn
+* Random damage system 🎲
+* Critical hits 🔥
+* Special ability with success/failure chance ✨
+* Enemy AI (can attack or heal) 🤖
+* Visual HP bars
+* Potion system 🧪
 
 ---
 
 ## 🧠 Game Mechanics
 
-* The hero starts with **100 HP** and **3 healing potions**
-* The enemy starts with **120 HP**
-* Each turn, the player chooses an action:
+### Player Actions:
 
-  * **Attack** → deals random damage between 10 and 25
-  * **Heal** → restores 20 HP (if potions are available)
-  * **Special Ability** → deals 30–50 damage but has a 50% chance to fail
-* If the player tries to heal without potions, the turn is skipped
-* After each valid action, the enemy attacks automatically
-* The game ends when either the hero or the enemy reaches **0 HP**
+1. **Attack** → Deals random damage (with a chance of critical hit)
+2. **Heal** → Restores HP using potions
+3. **Special Ability** → 50% chance to fail, high damage if successful
 
 ---
 
-## 🧩 Project Structure
+### Enemy Behavior:
 
-```
-main.py        # Game loop and player interaction
-funciones.py   # Game logic (functions)
-```
+* Attacks the player
+* Can heal itself when HP is low
 
 ---
 
-## 🧪 Functions
+### Win Condition:
 
-* `generar_daño(min_dano, max_dano)`
-  Generates a random damage value within a range
-
-* `atacar(hp_enemy)`
-  Applies damage to the enemy and ensures HP does not go below 0
-
-* `curar(hp_heroe, potion)`
-  Restores 20 HP and decreases the number of potions
-
-* `habilidad_especial(hp_enemy)`
-  Performs a powerful attack with a chance to fail
+* 🏆 Win: Enemy HP reaches 0
+* 💀 Lose: Hero HP reaches 0
 
 ---
 
-## ▶️ How to Run
+## 🖥️ How to Run
 
-1. Make sure Python is installed
-2. Place the files in the same folder:
-
-   * `main.py`
-   * `funciones.py`
-3. Run the program:
+1. Clone the repository:
 
 ```bash
-python main.py
+git clone https://github.com/LaoraSad/Terminal-Souls.git
+```
+
+2. Navigate to the project folder:
+
+```bash
+cd Terminal-Souls
+```
+
+3. Run the game:
+
+```bash
+python inicio.py
 ```
 
 ---
 
-## 📚 Concepts Used
+## 📁 Project Structure
 
-* Functions
-* Conditionals (`if`, `elif`, `else`)
-* Loops (`while`)
-* Random module
-* Modular programming
+```
+terminal-souls/
+│
+├── inicio.py        # Main game loop
+├── funciones.py     # Game logic and functions
+└── README.md
+```
 
 ---
 
-## 👤 Author
+## 🛠️ Technologies Used
+
+* Python 🐍
+* Random module
+* Time module
+
+---
 
 
+---
 
+## 🗺️ Project Diagram
 
+The project flowchart is:
+<p align="center">
+   <img src="./images/diagrama.png" alt="Preview" width="600"/>
+</p>
+
+---
+
+## 👩‍💻 Author
+
+Created by Luisa De la Rosa, Jhonatan Rodriguez
+
+---
 
